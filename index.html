@@ -285,6 +285,24 @@ section[id]{scroll-margin-top:128px;}
 }
 .why-card:hover .why-icon{transform:rotate(-8deg) scale(1.08);}
 .why-icon svg{width:28px;height:28px;stroke:var(--blue);}
+
+/* why-icon idle motion */
+.icon-basket{transform-origin:50% 92%;animation:basketWiggle 2.4s ease-in-out infinite;}
+@keyframes basketWiggle{0%,100%{transform:rotate(0deg);}25%{transform:rotate(-7deg);}75%{transform:rotate(7deg);}}
+.basket-item{transform-box:fill-box;transform-origin:center;animation:basketDrop 1.6s ease-in-out infinite;}
+.basket-item-2{animation-delay:.3s;}
+@keyframes basketDrop{0%,100%{transform:translateY(0);opacity:1;}50%{transform:translateY(-2px);opacity:.4;}}
+
+.node-pulse{transform-box:fill-box;transform-origin:center;animation:nodePulse 1.8s ease-in-out infinite;}
+.node-1{animation-delay:0s;}
+.node-2{animation-delay:.2s;}
+.node-3{animation-delay:.4s;}
+@keyframes nodePulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.7);opacity:.4;}}
+
+.cal-cell{animation:calFill 2.4s ease-in-out infinite;}
+.cal-cell-1{animation-delay:0s;}
+.cal-cell-2{animation-delay:1.2s;}
+@keyframes calFill{0%,40%{fill:var(--blue);}50%,90%{fill:transparent;}100%{fill:var(--blue);}}
 .why-title{font-size:18px;font-weight:800;color:var(--navy);}
 .why-desc{margin-top:10px;font-size:14px;color:var(--text-gray);line-height:1.7;}
 .why-summary{
@@ -601,7 +619,7 @@ function logoImgError(el){
       <a href="#support" class="nav-link">본사지원</a>
       <a href="#together" class="nav-link">본사·점주</a>
       <a href="#journey" class="nav-link">오픈절차</a>
-      <a href="#channels" class="nav-link">공식채널</a>
+      <a href="#channels" class="nav-link">SOCIAL</a>
       <a href="#faq" class="nav-link">FAQ</a>
       <a href="#contact" class="nav-link">상담신청</a>
     </div>
@@ -722,17 +740,17 @@ function logoImgError(el){
 
     <div class="why-grid reveal-stagger">
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/><circle cx="7" cy="9" r="1.4" fill="var(--blue)" stroke="none"/></svg></div>
+        <div class="why-icon"><svg class="icon-basket" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9V6a4 4 0 0 1 8 0v3"/><path d="M4 9h16l-1.4 9.8a2 2 0 0 1-2 1.7H7.4a2 2 0 0 1-2-1.7L4 9z"/><path class="basket-item" d="M9 13v4"/><path class="basket-item basket-item-2" d="M15 13v4"/></svg></div>
         <div class="why-title">고객의 수고를 덜고</div>
         <div class="why-desc">운반·대기·개기의 부담을 줄이는<br>생활빨래 대행 서비스</div>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V6M12 6l-5 5M12 6l5 5M12 6L7 6M12 6l5 0"/></svg></div>
+        <div class="why-icon"><svg class="icon-network" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h4"/><path d="M9 12l10-6M9 12l10 0M9 12l10 6"/><circle cx="5" cy="12" r="1.6" fill="var(--blue)" stroke="none"/><circle class="node-pulse node-1" cx="19" cy="6" r="1.6" fill="var(--blue)" stroke="none"/><circle class="node-pulse node-2" cx="19" cy="12" r="1.6" fill="var(--blue)" stroke="none"/><circle class="node-pulse node-3" cx="19" cy="18" r="1.6" fill="var(--blue)" stroke="none"/></svg></div>
         <div class="why-title">매출의 경로를 넓히고</div>
         <div class="why-desc">셀프 이용과 대행, 수거배송,<br>사업장 정기세탁을 함께 운영</div>
       </div>
       <div class="why-card">
-        <div class="why-icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="14" height="14" rx="2"/><circle cx="17" cy="17" r="4" fill="#fff"/><path d="M17 15.3v1.9l1.2 1.2"/></svg></div>
+        <div class="why-icon"><svg class="icon-calendar" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><rect class="cal-cell cal-cell-1" x="6.2" y="12.6" width="4" height="4" rx="1" fill="var(--blue)" stroke="none"/><rect class="cal-cell cal-cell-2" x="13.8" y="12.6" width="4" height="4" rx="1"/></svg></div>
         <div class="why-title">매장의 시간을 채우고</div>
         <div class="why-desc">셀프 이용이 적은 시간에<br>대행·B2B 물량을 배치</div>
       </div>
