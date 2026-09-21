@@ -1339,6 +1339,8 @@ phoneInput.addEventListener('input', ()=>{
 });
 
 /* form validation + submit gate */
+/* 구글 앱스 스크립트 배포 후 발급되는 웹 앱 URL(.../exec)로 교체하세요 */
+const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzAz_uFxjmHbz7dtiFJV8xw7fMHvM-1VERr4oaO1IKltOLB009NeHZTNL-L6l5SJeDl/exec';
 const form = document.getElementById('contactForm');
 const consentBox = document.getElementById('consent');
 const submitBtn = document.getElementById('submitBtn');
@@ -1374,11 +1376,31 @@ form.addEventListener('submit', (e)=>{
     formSuccess.classList.add('show');
     return;
   }
-  formSuccess.textContent = '감사합니다. 담당자가 확인 후 연락드리겠습니다.';
-  formSuccess.style.color = 'var(--blue)';
-  formSuccess.classList.add('show');
-  submitBtn.textContent = '신청이 접수되었습니다';
+
   submitBtn.disabled = true;
+  submitBtn.textContent = '전송 중...';
+
+  const finish = ()=>{
+    formSuccess.textContent = '감사합니다. 담당자가 확인 후 연락드리겠습니다.';
+    formSuccess.style.color = 'var(--blue)';
+    formSuccess.classList.add('show');
+    submitBtn.textContent = '신청이 접수되었습니다';
+  };
+
+  if(GOOGLE_SHEET_ENDPOINT.startsWith('http')){
+    const formData = new FormData(form);
+    fetch(GOOGLE_SHEET_ENDPOINT, { method:'POST', mode:'no-cors', body: formData })
+      .then(finish)
+      .catch(()=>{
+        formSuccess.textContent = '전송에 실패했습니다. 잠시 후 다시 시도해 주세요.';
+        formSuccess.style.color = '#E4572E';
+        formSuccess.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '울맘 창업 상담 신청하기';
+      });
+  } else {
+    finish();
+  }
 });
 </script>
 </body>
